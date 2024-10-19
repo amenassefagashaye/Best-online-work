@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Money Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            margin: 20px auto;
+            max-width: 900px;
+            background-color: white;
+            border: 5px solid #000;
+            border-radius: 20px;
+            padding: 20px;
+            position: relative;
+        }
+        .heading {
+            font-size: 2em;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .subheading {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        .spin-section, .task-section {
+            margin-bottom: 40px;
+        }
+        .spin-btn {
+            padding: 20px;
+            font-size: 1.1em;
+            color: white;
+            background-color: #ff5722;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 20px 0;
+            width: 100px;
+            height: 100px;
+        }
+        .task-section button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin: 10px 0;
+            cursor: pointer;
+            border: none;
+        }
+        .task-section p, .total-coins, .invite-message, .earnings {
+            font-size: 1.1em;
+            color: #333;
+        }
+        .earn-btn, .withdraw-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            font-weight: bold;
+        }
+        .inactive {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+        .animated-lines {
+            border: 5px solid #f00;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container animated-lines">
+    <h1 class="heading">Make Money Online</h1>
+    <p class="subheading">You can make up to 1,000 Dollar each day if you can complete all tasks.</p>
+    
+    <!-- Spin Section -->
+    <div class="spin-section">
+        <h2>1. Spinning</h2>
+        <p>Clustered amounts: 10, 50, 100, 200, 500, 1000, 100000</p>
+        <button id="spin-btn" class="spin-btn" onclick="spin()">Spin</button>
+        <p id="spin-result"></p>
+        <p id="spin-limit"></p>
+    </div>
+
+    <!-- Task Section -->
+    <div class="task-section">
+        <h2>2. Join Social Media</h2>
+        <button onclick="joinTask('Telegram', 'https://t.me/GOGSmor')">Join Telegram (100,000 Coins)</button>
+        <button onclick="joinTask('Facebook', 'https://web.facebook.com/profile.php?id=61566279998745')">Join Facebook (100,000 Coins)</button>
+        <button onclick="joinTask('TikTok', 'https://www.tiktok.com/@assefagashaye?_d=secCgYIASAHKAESPgo8sKXHqUz3%2FvFW')">Join TikTok (100,000 Coins)</button>
+        <button onclick="joinTask('YouTube', 'https://www.youtube.com/channel/UCLBivSEh30F44ptAAgEVRUA?sub_confirmation=1')">Subscribe YouTube (600,000 Coins)</button>
+    </div>
+
+    <!-- Earnings Section -->
+    <div class="earnings">
+        <button class="earn-btn" onclick="earn()">Earn</button>
+        <p id="earnings"></p>
+        <button class="withdraw-btn" onclick="withdraw()">Withdraw</button>
+        <p id="withdraw-msg"></p>
+    </div>
+
+    <!-- Invite Friends -->
+    <h2>Invite Friends</h2>
+    <input type="text" id="friend-name" placeholder="Enter friend's name">
+    <button onclick="generateInvite()">Invite</button>
+    <p class="invite-message" id="invite-msg"></p>
+
+</div>
+
+<script>
+    let spinCount = 0;
+    let totalCoins = 0;
+    
+    function spin() {
+        if (spinCount >= 3) {
+            document.getElementById('spin-limit').textContent = "You have finished daily trials.";
+            return;
+        }
+        const amounts = [10, 50, 100, 200, 500];
+        const result = amounts[Math.floor(Math.random() * amounts.length)];
+        document.getElementById('spin-result').textContent = `You won ${result} coins!`;
+        totalCoins += result;
+        spinCount++;
+    }
+
+    function joinTask(platform, link) {
+        window.open(link);
+        totalCoins += 100000;
+        alert(`You have successfully earned 100,000 coins from joining ${platform}!`);
+    }
+
+    function earn() {
+        let earnings = '';
+        if (totalCoins >= 100000) earnings += '1. If you earn 100,000 coins, you have 25 dollars.\n';
+        if (totalCoins >= 500000) earnings += '2. If you earn 500,000 coins, you have 50 dollars.\n';
+        if (totalCoins >= 1000000) earnings += '3. If you earn 1,000,000 coins, you have 100 dollars.\n';
+        if (totalCoins >= 2000000) earnings += '4. If you earn 2,000,000 coins, you have 200 dollars.\n';
+        document.getElementById('earnings').textContent = earnings;
+    }
+
+    function withdraw() {
+        if (totalCoins < 2000000) {
+            document.getElementById('withdraw-msg').textContent = "You have not finished the tasks completely yet.";
+        } else {
+            alert("You can now withdraw!");
+        }
+    }
+
+    function generateInvite() {
+        const friendName = document.getElementById('friend-name').value;
+        const message = `Dear ${friendName}, I have earned 1,000 dollars a day from this online work, and I have invited you to get more from this website: https://amenassefagashaye.github.io/Make-Online-Money/`;
+        document.getElementById('invite-msg').textContent = message;
+    }
+</script>
+
+</body>
+</html>
